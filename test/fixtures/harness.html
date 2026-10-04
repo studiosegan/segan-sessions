@@ -1,0 +1,40 @@
+<!doctype html>
+<meta charset="utf-8">
+<title>Segan Sessions — recording self-test harness</title>
+<p>headless recording harness</p>
+<script>
+  // Same codec preference ladder the real app uses. In open-source Chromium the mp4
+  // entries are unsupported, so this lands on webm — which is exactly the fallback
+  // path we want to exercise. In real Chrome it picks mp4/H.264.
+  const MIMES = [
+    'video/mp4;codecs="avc1.42E01E,mp4a.40.2"',
+    'video/mp4',
+    'video/webm;codecs=vp9,opus',
+    'video/webm',
+    '',
+  ];
+
+  // Record for `ms`, return { size, b64, mime } so the Node runner can write + probe it.
+  window.run = async function run(ms) {
+    const mime = MIMES.find((m) => m === '' || MediaRecorder.isTypeSupported(m));
+    const stream = await navigator.mediaDevices.getUserMedia({
+      video: { width: 1280, height: 720, frameRate: 30 },
+      audio: true,
+    });
+    const rec = new MediaRecorder(stream, { mimeType: mime || undefined, videoBitsPerSecond: 4_000_000 });
+    const chunks = [];
+    rec.ondataavailable = (e) => { if (e.data && e.data.size) chunks.push(e.data); };
+    const stopped = new Promise((res) => { rec.onstop = res; });
+    rec.start(1000);
+    await new Promise((r) => setTimeout(r, ms));
+    rec.stop();
+    await stopped;
+    stream.getTracks().forEach((t) => t.stop());
+    const type = (rec.mimeType || mime || 'video/webm').split(';')[0];
+    const blob = new Blob(chunks, { type });
+    const buf = new Uint8Array(await blob.arrayBuffer());
+    let bin = '';
+    for (let i = 0; i < buf.length; i++) bin += String.fromCharCode(buf[i]);
+    return { size: buf.length, b64: btoa(bin), mime: rec.mimeType || mime };
+  };
+</script>

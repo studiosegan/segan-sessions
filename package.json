@@ -1,0 +1,28 @@
+{
+  "name": "segan-sessions",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Free recording studio for vertical video on macOS — camera, screen with a face bubble, and your Android phone, saved as clean MP4s.",
+  "license": "SEE LICENSE IN LICENSE",
+  "author": "Studio Segan",
+  "homepage": "https://github.com/studiosegan/segan-sessions",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/studiosegan/segan-sessions.git"
+  },
+  "bugs": "https://github.com/studiosegan/segan-sessions/issues",
+  "type": "module",
+  "os": ["darwin"],
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "start": "node server.js --open",
+    "serve": "node server.js",
+    "test": "node test/run-all.mjs",
+    "backgrounds": "node tools/backgrounds/render.mjs"
+  },
+  "devDependencies": {
+    "playwright": "1.62.1"
+  }
+}

@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Segan Sessions</title>
+<link rel="icon" type="image/png" href="/favicon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Montserrat:wght@400;500;600&family=Noto+Sans+Bengali:wght@500;600&display=swap">
+<link rel="stylesheet" href="/style.css">
+<script>
+// apply saved theme before first paint (no flash)
+(() => {
+  const pref = localStorage.getItem('ss-theme') || 'system';
+  const dark = pref === 'dark' || (pref === 'system' && matchMedia('(prefers-color-scheme: dark)').matches);
+  document.documentElement.dataset.theme = dark ? 'dark' : 'light';
+})();
+</script>
+</head>
+<body>
+
+<header class="topbar">
+  <div class="brand">
+    <svg class="brand-wordmark" viewBox="0 0 836 123" fill="none" role="img" aria-label="Studio Segan">
+      <g class="ss-studio">
+        <path d="M19.1897 67.1637V69.5255C19.1897 74.6919 19.9284 75.2824 24.7992 75.2824H47.3842C52.255 75.2824 52.9937 74.692 52.9937 69.5255V65.3924C52.9937 63.9162 52.9937 62.8829 51.0748 62.1448L13.4331 48.5645C4.72358 45.317 0 38.3792 0 27.7511V25.094C0 9.00423 9.44722 0.147461 24.7992 0.147461H47.3842C63.6211 0.147461 72.1834 9.74232 72.1834 25.094V29.9653H52.9937V25.094C52.9937 20.2228 51.9597 19.3372 47.3842 19.3372H24.7992C19.6332 19.3372 19.1897 20.2228 19.1897 25.094V27.7511C19.1897 29.0796 19.1897 30.2605 20.6661 30.8509L58.7503 44.5789C67.3117 47.6788 72.1834 54.9118 72.1834 65.3924V69.5255C72.1834 84.8772 63.6211 94.472 47.3842 94.472H24.7992C9.44722 94.472 0 85.6153 0 69.5255V67.1637L19.1897 67.1637Z"/>
+        <path d="M113.225 94.4722H104.369C90.0508 94.4722 80.7507 85.1726 80.7507 70.8542V0H99.9405V17.7135H113.225V36.9033H99.9405V70.8541C99.9405 75.2826 99.9404 75.2826 104.369 75.2826H113.225V94.4722Z"/>
+        <path d="M176.336 94.4706V88.7137C172.055 93.1421 165.855 95.2087 156.851 95.2087C132.938 95.2087 121.719 84.1377 121.719 60.5197V17.7119H140.908V56.0914C140.908 69.8192 144.304 76.3142 153.603 76.3142H164.822C174.122 76.3142 176.336 69.8193 176.336 59.3388V17.7119H195.526V94.4706H176.336Z"/>
+        <path d="M204.199 55.7977C204.199 34.3938 218.813 16.9756 240.364 16.9756C250.107 16.9756 257.783 20.5183 263.392 26.4228V0H282.582V94.4722H263.392V85.763C257.783 91.8152 250.107 95.3579 240.364 95.3579C218.813 95.3579 204.199 77.792 204.199 55.7977ZM238.888 76.3159H247.745C257.783 76.3159 263.392 70.1162 263.392 60.226V51.3694C263.392 41.4792 257.783 35.2796 247.745 35.2796H238.888C228.851 35.2796 221.913 42.9554 221.913 55.7977C221.913 68.64 228.851 76.3159 238.888 76.3159Z"/>
+        <path d="M310.046 94.4723H291.004V17.7136H310.194L310.046 94.4723Z"/>
+        <path d="M318.711 55.7962C318.711 30.8497 333.62 16.9741 357.829 16.9741C383.07 16.9741 396.946 31.7354 396.946 55.7962C396.946 81.1856 382.037 95.3565 357.829 95.3565C332.586 95.3564 318.711 80.4475 318.711 55.7962ZM353.4 76.3144H362.257C372.294 76.3144 379.232 68.6385 379.232 55.7962C379.232 42.954 372.294 35.2781 362.257 35.2781H353.4C343.362 35.2781 336.425 42.954 336.425 55.7962C336.425 68.6385 343.362 76.3144 353.4 76.3144Z"/>
+      </g>
+      <path class="ss-dot" d="M310.194 0H291.004V11.809H310.194V0Z"/>
+      <g class="ss-segan">
+        <path d="M439.408 67.164V69.5258C439.408 74.6922 440.146 75.2826 445.017 75.2826H467.602C472.473 75.2826 473.212 74.6922 473.212 69.5258V65.3926C473.212 63.9164 473.212 62.8832 471.293 62.1451L433.651 48.5647C424.941 45.3173 420.218 38.3795 420.218 27.7513V25.0943C420.218 9.00448 429.665 0.147705 445.017 0.147705H467.602C483.839 0.147705 492.401 9.74256 492.401 25.0943V29.9655H473.212V25.0943C473.212 20.223 472.178 19.3374 467.602 19.3374H445.017C439.851 19.3374 439.408 20.223 439.408 25.0943V27.7513C439.408 29.0798 439.408 30.2607 440.884 30.8512L478.968 44.5792C487.53 47.6791 492.401 54.9121 492.401 65.3926V69.5257C492.401 84.8775 483.839 94.4723 467.602 94.4723H445.017C429.665 94.4723 420.218 85.6155 420.218 69.5257V67.1639L439.408 67.164Z"/>
+        <path d="M500.969 55.7962C500.969 29.9641 514.992 16.9741 540.086 16.9741C565.18 16.9741 579.203 29.9641 579.203 55.7962V62.4389H519.42C521.339 71.2956 527.539 76.3144 535.658 76.3144H544.515C550.566 76.3144 555.438 73.5098 558.39 68.4909H577.727C574.627 86.9425 560.604 95.3564 540.086 95.3564C513.959 95.3564 500.969 81.3333 500.969 55.7962ZM559.866 46.2014C557.357 39.2636 551.748 35.2781 544.515 35.2781H535.658C528.425 35.2781 522.815 39.2636 520.306 46.2014H559.866Z"/>
+        <path d="M587.773 55.7962C587.773 34.3924 602.387 16.9741 623.939 16.9741C633.681 16.9741 641.357 20.5168 646.966 26.4213V17.7121H666.156V88.5662C666.156 109.675 653.313 122.517 632.205 122.517H626.153C603.125 122.517 592.202 111.594 592.202 97.4231H611.391C611.391 102.147 613.163 103.328 626.153 103.328H632.205C644.014 103.328 646.966 100.375 646.966 88.5662V85.7616C641.357 91.8138 633.681 95.3565 623.939 95.3565C602.387 95.3564 587.773 77.7906 587.773 55.7962ZM622.462 76.3144H631.319C641.357 76.3144 646.966 70.1147 646.966 60.2246V51.3679C646.966 41.4778 641.357 35.2781 631.319 35.2781H622.462C612.425 35.2781 605.487 42.954 605.487 55.7963C605.487 68.6385 612.425 76.3144 622.462 76.3144Z"/>
+        <path d="M674.578 55.7962C674.578 34.3924 689.192 16.9741 710.743 16.9741C720.486 16.9741 728.161 20.5168 733.771 26.4213V17.7121H752.96V94.4707H733.771V85.7616C728.161 91.8138 720.486 95.3565 710.743 95.3565C689.192 95.3564 674.578 77.7906 674.578 55.7962ZM709.267 76.3144H718.124C728.161 76.3144 733.771 70.1147 733.771 60.2246V51.3679C733.771 41.4778 728.161 35.2781 718.124 35.2781H709.267C699.229 35.2781 692.292 42.954 692.292 55.7963C692.292 68.6385 699.229 76.3144 709.267 76.3144Z"/>
+        <path d="M780.572 17.7121V23.4691C784.854 19.0406 791.053 16.9741 800.057 16.9741C823.971 16.9741 835.189 28.045 835.189 51.6631V94.4707H816V56.0915C816 42.3635 812.605 35.8685 803.305 35.8685H792.087C782.787 35.8685 780.572 42.3635 780.572 52.844V94.4707H761.383V17.7121H780.572Z"/>
+      </g>
+    </svg>
+    <span class="brand-divider" aria-hidden="true"></span>
+    <span class="brand-product">Sessions</span>
+  </div>
+  <div class="top-actions">
+    <div class="pills">
+      <span class="pill" id="pill-ffmpeg"><span class="dot"></span>ffmpeg</span>
+      <span class="pill" id="pill-phone"><span class="dot"></span>phone</span>
+      <span class="pill" id="pill-disk"><span class="dot"></span>disk</span>
+    </div>
+    <button class="icon-btn" id="btn-hints" title="Show / hide tips">
+      <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M9.6 9.4a2.5 2.5 0 0 1 4.9.6c0 1.6-2.4 2-2.4 3.4"/><circle cx="12" cy="16.8" r="0.4"/></svg>
+    </button>
+    <button class="icon-btn" id="btn-rail" title="Show / hide the controls sidebar (full-width canvas)">
+      <svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M15.5 4v16"/></svg>
+    </button>
+    <div class="theme-toggle" id="theme-toggle" role="group" aria-label="Theme">
+      <button data-theme-pref="system" title="System theme">
+        <svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="13" rx="2"/><path d="M9 21h6M12 17v4"/></svg>
+      </button>
+      <button data-theme-pref="light" title="Light theme">
+        <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="4.5"/><path d="M12 2.5v2.6M12 18.9v2.6M2.5 12h2.6M18.9 12h2.6M5.2 5.2l1.9 1.9M16.9 16.9l1.9 1.9M18.8 5.2l-1.9 1.9M7.1 16.9l-1.9 1.9"/></svg>
+      </button>
+      <button data-theme-pref="dark" title="Dark theme">
+        <svg viewBox="0 0 24 24"><path d="M20 14.5A8.5 8.5 0 0 1 9.5 4a8.5 8.5 0 1 0 10.5 10.5Z"/></svg>
+      </button>
+    </div>
+  </div>
+</header>
+
+<main class="layout">
+  <!-- ============ STAGE ============ -->
+  <section class="stage">
+    <div class="stage-box" id="stage-box">
+      <video id="preview" autoplay playsinline muted></video>
+      <div class="canvas-wrap" id="canvas-wrap" hidden>
+        <canvas id="composite-canvas"></canvas>
+        <div class="canvas-grid" id="canvas-grid" hidden></div>
+      </div>
+      <canvas id="overlay"></canvas>
+
+      <div id="phone-stage" class="phone-stage" hidden>
+        <div class="phone-stage-inner">
+          <div class="phone-stage-title" id="phone-stage-title">No phone connected</div>
+          <div class="phone-stage-sub" id="phone-stage-sub">Plug in via USB with USB debugging on.<br>The scrcpy window is your live monitor while recording.</div>
+        </div>
+      </div>
+
+      <div id="prompter" class="prompter" hidden>
+        <div class="prompter-head" id="prompter-head">
+          <svg class="prompter-grip" viewBox="0 0 24 24" aria-hidden="true"><circle cx="9" cy="6" r="1.4"/><circle cx="15" cy="6" r="1.4"/><circle cx="9" cy="12" r="1.4"/><circle cx="15" cy="12" r="1.4"/><circle cx="9" cy="18" r="1.4"/><circle cx="15" cy="18" r="1.4"/></svg>
+          <span class="prompter-title" id="prompter-title">Script</span>
+          <div class="prompter-btns">
+            <button class="pbtn" id="prompter-play" title="Play / pause (space)">
+              <svg viewBox="0 0 24 24" class="ic-play"><path d="M8 5.5v13l11-6.5z"/></svg>
+              <svg viewBox="0 0 24 24" class="ic-pause"><path d="M7.5 5h3.4v14H7.5zM13.1 5h3.4v14h-3.4z"/></svg>
+            </button>
+            <button class="pbtn" id="prompter-restart" title="Restart">
+              <svg viewBox="0 0 24 24" fill="none"><path d="M4 5v5h5" class="st"/><path d="M4.6 10A8 8 0 1 1 4 14" class="st"/></svg>
+            </button>
+            <span class="pbtn-divider"></span>
+            <button class="pbtn pbtn-w" data-width="s" title="Compact width">S</button>
+            <button class="pbtn pbtn-w" data-width="m" title="Medium width">M</button>
+            <button class="pbtn pbtn-w" data-width="f" title="Full width">F</button>
+            <button class="pbtn" id="prompter-recenter" title="Snap back to top center">
+              <svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="7.5" class="st"/><circle cx="12" cy="12" r="2"/></svg>
+            </button>
+          </div>
+        </div>
+        <div class="prompter-view"><div class="prompter-scroll" id="prompter-scroll"></div></div>
+        <div class="prompter-resize" id="prompter-resize" title="Drag to resize"></div>
+      </div>
+
+      <div id="countdown" class="countdown" hidden></div>
+      <div id="stage-warn" class="stage-warn" hidden></div>
+      <div id="mute-badge" class="mute-badge" hidden>MIC MUTED · press M to unmute</div>
+      <div id="call-audio-warn" class="call-audio-warn" hidden>
+        <span><b>Call audio is off</b> — only your mic will be recorded</span>
+        <button class="btn quiet" id="btn-repick-audio"
+                title="Pick the screen again and switch on “Share with system audio”">Re-pick with audio</button>
+        <button class="btn quiet" id="btn-call-audio-ok"
+                title="Recording a tutorial? Your mic is all you need">Not needed</button>
+      </div>
+    </div>
+
+    <div class="transport">
+      <span class="rec-ratio mono" id="transport-ratio">9:16 · 1080×1920</span>
+      <button id="btn-cancel" class="btn-retake btn-cancel" hidden aria-label="Cancel recording"
+              title="Cancel — throw this recording away and go back">
+        <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor"
+             stroke-width="2.2" stroke-linecap="round">
+          <path d="M6 6l12 12M18 6L6 18"/>
+        </svg>
+      </button>
+      <button id="btn-pause" class="btn-retake" hidden aria-label="Pause"
+              title="Pause the take — continue when ready, saved as one video">
+        <svg class="ic-pause-rec" viewBox="0 0 24 24" width="16" height="16" fill="currentColor">
+          <rect x="6" y="4" width="4" height="16" rx="1"/><rect x="14" y="4" width="4" height="16" rx="1"/>
+        </svg>
+        <svg class="ic-resume" viewBox="0 0 24 24" width="16" height="16" fill="currentColor">
+          <polygon points="7,4 21,12 7,20"/>
+        </svg>
+      </button>
+      <button id="btn-record" class="btn-record" disabled aria-label="Record">
+        <span class="rec-icon"></span>
+      </button>
+      <button id="btn-retake" class="btn-retake" hidden aria-label="Retake"
+              title="Not happy? Discard this take and re-record">
+        <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor"
+             stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M1 4v6h6"/><path d="M3.51 15a9 9 0 1 0 2.13-9.36L1 10"/>
+        </svg>
+      </button>
+      <span class="rec-timer mono" id="rec-timer">00:00</span>
+      <button id="btn-mute" class="btn-retake btn-mute" aria-label="Mute microphone" aria-pressed="false"
+              title="Mute your mic in the recording — the video and call audio keep recording (M)">
+        <svg class="ic-mic" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor"
+             stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="9" y="2" width="6" height="12" rx="3"/><path d="M5 10v1a7 7 0 0 0 14 0v-1"/><path d="M12 18v4"/>
+        </svg>
+        <svg class="ic-mic-off" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor"
+             stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M15 9.3V5a3 3 0 0 0-5.9-.7"/><path d="M9 9v2a3 3 0 0 0 5.1 2.1"/>
+          <path d="M19 10v1a7 7 0 0 1-.9 3.5"/><path d="M5 10v1a7 7 0 0 0 11.4 5.4"/><path d="M12 18v4"/><path d="M3 3l18 18"/>
+        </svg>
+      </button>
+      <div class="mic-meter" id="mic-meter" hidden title="Mic level — red = too loud, amber = silent">
+        <div class="mic-meter-fill" id="mic-meter-fill"></div>
+      </div>
+      <div class="call-meter" id="call-meter" hidden
+           title="Call audio (what your shared screen plays) — moves when the other side of your call talks">
+        <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2"
+             stroke-linecap="round" stroke-linejoin="round">
+          <path d="M11 5 6 9H2v6h4l5 4z"/><path d="M15.5 8.5a5 5 0 0 1 0 7"/><path d="M19 5a10 10 0 0 1 0 14"/>
+        </svg>
+        <div class="mic-meter"><div class="mic-meter-fill" id="call-meter-fill"></div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ CONTROL RAIL ============ -->
+  <aside class="rail">
+    <nav class="tabs" role="tablist">
+      <button class="tab active" data-mode="camera" role="tab">Camera</button>
+      <button class="tab" data-mode="composite" role="tab">Screener</button>
+      <button class="tab" data-mode="phone" role="tab">Phone</button>
+    </nav>
+
+    <!-- shared -->
+    <section class="panel" id="panel-shared">
+      <label class="field"><span class="label">Aspect ratio</span>
+        <select id="sel-ratio">
+          <option value="9:16" selected>9:16 — Reel / Shorts (1080×1920)</option>
+          <option value="4:5">4:5 — Feed (1080×1350)</option>
+          <option value="1:1">1:1 — Square (1080×1080)</option>
+          <option value="16:9">16:9 — Landscape (1920×1080)</option>
+        </select>
+      </label>
+      <!-- Shared by Camera + Screener so you always see which mic is recording (hidden in Phone mode:
+           phone recordings use the phone's own audio). -->
+      <label class="field" id="field-mic"><span class="label">Microphone</span><select id="sel-mic"></select></label>
+      <label class="field"><span class="label">Countdown</span>
+        <select id="sel-countdown">
+          <option value="3" selected>3 seconds</option>
+          <option value="5">5 seconds</option>
+          <option value="0">Off — record instantly</option>
+        </select>
+      </label>
+      <label class="field"><span class="label">Quality (bitrate)</span>
+        <select id="sel-bitrate">
+          <option value="" selected>Auto — 8 screen / 12 bubble</option>
+          <option value="6">6 Mbps — smallest files</option>
+          <option value="8">8 Mbps</option>
+          <option value="10">10 Mbps — smoother composite</option>
+          <option value="12">12 Mbps — reel spec</option>
+          <option value="14">14 Mbps — highest</option>
+        </select>
+      </label>
+    </section>
+
+    <!-- camera mode -->
+    <section class="panel mode-panel" id="panel-camera">
+      <h2>Camera</h2>
+      <label class="field"><span class="label">Camera</span><select id="sel-cam"></select></label>
+      <button class="btn quiet" id="btn-refresh-devices">Refresh devices</button>
+      <label class="check"><input type="checkbox" id="chk-mirror" checked> Mirror preview (recording stays normal)</label>
+      <label class="check"><input type="checkbox" id="chk-autofinish" checked> Auto-finish after save</label>
+      <p class="hint">Records the full 1920×1080 feed; finishing crops to the guides you see. Tip: the phone camera beats the Mac camera on quality.</p>
+    </section>
+
+    <!-- composite mode -->
+    <section class="panel mode-panel" id="panel-composite" hidden>
+      <h2>Screener</h2>
+      <div class="row">
+        <select id="sel-main-source" class="grow">
+          <option value="screen" selected>Main: Screen / window</option>
+          <option value="phone">Main: Phone camera (mirror window)</option>
+        </select>
+        <button class="btn primary" id="btn-pick-screen">Choose…</button>
+      </div>
+      <p class="hint" id="main-source-hint">The main (full-frame) source — crop &amp; zoom it below.
+        For phone: open its camera app in the Phone tab’s “Mirror &amp; control” window, then pick that
+        window here — full optical zoom, filmed on the phone.</p>
+      <p class="hint"><b>Recording a call?</b> Choose <b>Entire Screen</b> and switch on <b>“Share with system
+        audio”</b> in Chrome’s picker — otherwise the other side of the call isn’t recorded. The button then
+        says “Share with Audio”.</p>
+      <button class="btn quiet" id="btn-popout">⧉ Pop-out monitor</button>
+      <p class="hint">Floats the live view in a small always-on-top window with its own Record button
+        — so you can record while working in another app/tab <b>without the video freezing</b>. Use this
+        whenever you’ll click away from the studio while recording.</p>
+
+      <div class="group">
+        <span class="label">Screen area</span>
+        <div class="slider-row"><span class="slabel">Zoom</span><input type="range" id="rng-zoom" min="35" max="1200" value="100"><span class="mono zoom-val" id="zoom-val">1.0×</span></div>
+        <div class="bg-gallery" id="bg-gallery" role="radiogroup" aria-label="Backdrop"></div>
+        <div class="row">
+          <button class="btn quiet grow" id="btn-bg-pick">🖼 Your own image…</button>
+          <button class="btn quiet" id="btn-bg-clear" hidden>None</button>
+          <input type="file" id="inp-bg" accept="image/*" hidden>
+        </div>
+        <div class="slider-row"><span class="slabel">Window radius</span><input type="range" id="rng-win-radius" min="0" max="60" value="0"><span class="mono" id="win-radius-val">0</span></div>
+        <div class="row">
+          <select id="sel-fit" class="grow"><option value="cover" selected>Start from: Fill (crop)</option><option value="contain">Start from: Fit (letterbox)</option></select>
+          <button class="btn quiet" id="btn-view-reset">Reset</button>
+          <button class="btn quiet lock-btn" id="btn-grid" title="Rule-of-thirds grid (preview only, never recorded)">
+            <svg viewBox="0 0 24 24"><rect x="4" y="4" width="16" height="16" rx="2"/><path d="M9.3 4v16M14.7 4v16M4 9.3h16M4 14.7h16"/></svg>
+          </button>
+          <button class="btn quiet lock-btn" id="btn-lock" title="Lock the layout — ratio, area and bubble stop reacting to mouse/scroll">
+            <svg viewBox="0 0 24 24" class="ic-unlocked"><rect x="5" y="10.5" width="14" height="9.5" rx="2"/><path d="M8.5 10.5V7.5a3.5 3.5 0 0 1 6.9-.8"/></svg>
+            <svg viewBox="0 0 24 24" class="ic-locked"><rect x="5" y="10.5" width="14" height="9.5" rx="2"/><path d="M8.5 10.5V7.5a3.5 3.5 0 0 1 7 0v3"/></svg>
+          </button>
+        </div>
+        <p class="hint">Drag to choose the area · scroll to zoom. Below 100% the window <b>floats on the backdrop</b> (all four corners, OBS-style) — use <b>Fit</b> to see the whole window. Lock it when the framing is final.</p>
+      </div>
+
+      <div class="group">
+        <span class="label">Face bubble</span>
+        <div class="row">
+          <select id="sel-bubble-shape" class="grow">
+            <option value="circle" selected>Circle</option>
+            <option value="square">Rounded square</option>
+            <option value="off">Off — camera off</option>
+          </select>
+          <select id="sel-bubble-pos" class="grow">
+            <option value="">Position…</option>
+            <option value="br">Bottom right</option><option value="bc">Bottom center</option><option value="bl">Bottom left</option>
+            <option value="tr">Top right</option><option value="tc">Top center</option><option value="tl">Top left</option>
+          </select>
+        </div>
+        <div class="row">
+          <select id="sel-bubble-source" class="grow">
+            <option value="camera" selected>Bubble from: Mac camera</option>
+            <option value="display">Bubble from: window / phone mirror…</option>
+          </select>
+          <button class="btn quiet" id="btn-bubble-pick" hidden>Pick…</button>
+        </div>
+        <div class="slider-row"><span class="slabel">Size</span><input type="range" id="rng-bubble-size" min="12" max="48" value="30"></div>
+        <div class="slider-row"><span class="slabel">Radius</span><input type="range" id="rng-bubble-radius" min="0" max="50" value="16"></div>
+        <div class="slider-row"><span class="slabel">Border</span><input type="range" id="rng-bubble-border" min="0" max="14" value="4">
+          <input type="color" id="clr-bubble-border" value="#ffffff" title="Border color"></div>
+        <p class="hint">Drag the bubble to move it (snaps to center lines and margins); drag its corner handle to stretch it over more area; scroll over it to resize. Radius shapes the square’s corners.</p>
+      </div>
+
+      <div class="group">
+        <span class="label">Privacy blur</span>
+        <div class="row">
+          <button class="btn quiet grow" id="btn-blur-add">Add blur area</button>
+          <button class="btn quiet" id="btn-blur-clear">Clear</button>
+        </div>
+        <p class="hint">Click, then drag a box over anything private (names, numbers). Blurs stick to the screen content through zoom and pan. In blur mode, click an existing box to remove it.</p>
+      </div>
+
+      <label class="check"><input type="checkbox" id="chk-autofinish-comp" checked> Auto-finish after save</label>
+      <p class="hint">Tick “Also share audio” in Chrome’s picker to capture tab/system sound. Keep this window visible while recording.</p>
+    </section>
+
+    <!-- phone mode -->
+    <section class="panel mode-panel" id="panel-phone" hidden>
+      <h2>Phone (USB)</h2>
+      <div class="phone-status" id="phone-status">checking…</div>
+      <div id="phone-setup" hidden>
+        <p class="hint">scrcpy + adb come with the installer — run it again in Terminal to restore them:</p>
+        <code class="cmd" id="setup-cmd">curl -fsSL https://raw.githubusercontent.com/studiosegan/segan-sessions/main/install.sh | bash</code>
+      </div>
+      <div id="phone-controls" hidden>
+        <button class="btn" id="btn-phone-mirror">Mirror &amp; control</button>
+        <p class="hint" id="phone-mirror-hint">A live window, no recording. Line up shots — or use it as the phone source in Screener.</p>
+        <button class="btn quiet" id="btn-phone-wireless">📶 Go wireless</button>
+        <p class="hint" id="phone-wireless-hint">Plug in USB, tap this, then unplug — control the phone over WiFi from a tripod.</p>
+        <button class="btn quiet" id="btn-phone-pull">Pull from phone…</button>
+        <p class="hint">Camera footage: shoot in the phone’s camera app, then Pull latest. <b>Record</b> grabs the phone screen.</p>
+      </div>
+    </section>
+
+    <!-- teleprompter -->
+    <section class="panel">
+      <h2>Teleprompter</h2>
+      <div class="field"><span class="label">Script</span>
+        <div class="row">
+          <select id="sel-script" class="grow"><option value="">none</option></select>
+          <button class="btn quiet lock-btn" id="btn-prompter-power" title="Prompter on / off">
+            <svg viewBox="0 0 24 24"><path d="M12 3.5v8"/><path d="M17.4 6.6a7.5 7.5 0 1 1-10.8 0"/></svg>
+          </button>
+        </div>
+      </div>
+      <label class="field"><span class="label">Pacing</span>
+        <select id="sel-pace">
+          <option value="manual">Manual — speed slider</option>
+          <option value="35">Finish in ~35s (reel)</option>
+          <option value="45">Finish in ~45s</option>
+          <option value="60">Finish in ~60s (max)</option>
+        </select>
+      </label>
+      <div class="slider-row"><span class="slabel">Speed</span><input type="range" id="rng-speed" min="10" max="120" value="40"></div>
+      <div class="slider-row"><span class="slabel">Size</span><input type="range" id="rng-fontsize" min="20" max="54" value="30"></div>
+      <p class="hint">The prompter rewinds and starts scrolling automatically when recording starts. Drag its header to move it; space plays/pauses.</p>
+    </section>
+  </aside>
+</main>
+
+
+<!-- ============ PHONE MEDIA PICKER (browse the camera roll, pull several at once) ============ -->
+<div class="picker" id="pull-picker" hidden>
+  <div class="picker-card" role="dialog" aria-label="Pull from phone">
+    <div class="picker-head">
+      <h2>Pull from phone</h2>
+      <div class="picker-tabs" id="picker-tabs">
+        <button class="btn quiet on" data-kind="video">Videos</button>
+        <button class="btn quiet" data-kind="photo">Photos</button>
+      </div>
+      <button class="btn quiet" id="picker-close" aria-label="Close">✕</button>
+    </div>
+    <div class="picker-sub">
+      <label class="picker-all"><input type="checkbox" id="picker-all"> Select all</label>
+      <div class="picker-when" id="picker-when">
+        <button class="btn quiet on" data-days="0">All</button>
+        <button class="btn quiet" data-days="1">Today</button>
+        <button class="btn quiet" data-days="7">7 days</button>
+        <button class="btn quiet" data-days="30">30 days</button>
+      </div>
+      <span class="hint" id="picker-count"></span>
+    </div>
+    <div class="picker-list" id="picker-list"></div>
+    <div class="picker-foot">
+      <button class="btn" id="picker-pull" disabled>Pull selected</button>
+      <div class="picker-prog" id="picker-prog" hidden>
+        <div class="pbar"><span id="picker-bar"></span></div>
+        <span class="pnum" id="picker-prog-text"></span>
+      </div>
+      <span class="hint" id="picker-status">Videos go to your Takes list · photos go to the Images folder (🖼 Images button)</span>
+    </div>
+  </div>
+</div>
+
+<!-- ============ TAKES (collapsible drawer — keeps the canvas height fixed) ============ -->
+<section class="takes" id="takes">
+  <div class="takes-head" id="takes-toggle" role="button" tabindex="0">
+    <h2>Takes <span id="takes-count" class="mono"></span></h2>
+    <div class="row">
+      <button class="btn quiet" id="btn-takes-folder" title="Reveal your recordings in Finder">📂 Open folder</button>
+      <button class="btn quiet" id="btn-images-folder" title="Reveal the photos pulled from your phone">🖼 Images</button>
+      <button class="btn danger" id="btn-takes-clear" title="Delete every take (files + history)">Clear all</button>
+      <button class="btn quiet" id="btn-takes-refresh">Refresh</button>
+      <svg class="takes-chevron" id="takes-chevron" viewBox="0 0 24 24"><path d="m6 14 6-6 6 6"/></svg>
+    </div>
+  </div>
+  <div id="takes-list" class="takes-list" hidden></div>
+</section>
+
+<footer class="footer">
+  <span>Segan Sessions <span id="app-version"></span> · by Studio Segan · free for everyone</span>
+  <a class="mono footer-link" href="https://github.com/studiosegan/segan-sessions" target="_blank" rel="noopener">github.com/studiosegan/segan-sessions</a>
+</footer>
+
+<div id="toast" class="toast" hidden></div>
+
+<script type="module" src="/js/app.js"></script>
+</body>
+</html>

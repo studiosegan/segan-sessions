@@ -1,0 +1,74 @@
+[
+  {
+    "id": "segan-dunes",
+    "name": "Segan Dunes",
+    "file": "segan-dunes.webp",
+    "thumb": "thumbs/segan-dunes.webp"
+  },
+  {
+    "id": "midnight",
+    "name": "Midnight",
+    "file": "midnight.webp",
+    "thumb": "thumbs/midnight.webp"
+  },
+  {
+    "id": "aurora",
+    "name": "Aurora",
+    "file": "aurora.webp",
+    "thumb": "thumbs/aurora.webp"
+  },
+  {
+    "id": "violet-mesh",
+    "name": "Violet Mesh",
+    "file": "violet-mesh.webp",
+    "thumb": "thumbs/violet-mesh.webp"
+  },
+  {
+    "id": "ember-dunes",
+    "name": "Ember Dunes",
+    "file": "ember-dunes.webp",
+    "thumb": "thumbs/ember-dunes.webp"
+  },
+  {
+    "id": "ocean-dunes",
+    "name": "Ocean Dunes",
+    "file": "ocean-dunes.webp",
+    "thumb": "thumbs/ocean-dunes.webp"
+  },
+  {
+    "id": "graphite",
+    "name": "Graphite",
+    "file": "graphite.webp",
+    "thumb": "thumbs/graphite.webp"
+  },
+  {
+    "id": "blueprint",
+    "name": "Blueprint",
+    "file": "blueprint.webp",
+    "thumb": "thumbs/blueprint.webp"
+  },
+  {
+    "id": "studio-grey",
+    "name": "Studio Grey",
+    "file": "studio-grey.webp",
+    "thumb": "thumbs/studio-grey.webp"
+  },
+  {
+    "id": "paper",
+    "name": "Paper",
+    "file": "paper.webp",
+    "thumb": "thumbs/paper.webp"
+  },
+  {
+    "id": "mint",
+    "name": "Mint",
+    "file": "mint.webp",
+    "thumb": "thumbs/mint.webp"
+  },
+  {
+    "id": "sunrise",
+    "name": "Sunrise",
+    "file": "sunrise.webp",
+    "thumb": "thumbs/sunrise.webp"
+  }
+]
