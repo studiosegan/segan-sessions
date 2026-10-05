@@ -125,8 +125,10 @@ install_app() {
   else
     ref="${SEGAN_REF:-}"
     if [ -z "$ref" ]; then
-      ref=$(curl -fsSL "https://api.github.com/repos/$REPO/releases/latest" 2>/dev/null \
-        | sed -n 's/.*"tag_name": *"\([^"]*\)".*/\1/p' | head -1 || true)
+      # The latest release's tag, read from GitHub's web redirect. Not the REST API: it allows 60
+      # calls an hour per IP, and many home and mobile networks put a whole area behind one IP.
+      ref=$(curl -fsSI --connect-timeout 20 "https://github.com/$REPO/releases/latest" 2>/dev/null \
+        | tr -d '\r' | sed -n 's#^[Ll]ocation: .*/releases/tag/##p' | head -1 || true)
     fi
     ref="${ref:-main}"
     # The install counter: each release carries the app as two identical files, one fetched by new
@@ -135,8 +137,11 @@ install_app() {
     asset="segan-sessions.tar.gz"
     [ -f "$BASE/app/server.js" ] && asset="segan-sessions-update.tar.gz"
     step "Segan Sessions $ref"
-    code=$(curl -L --retry 3 --connect-timeout 20 --progress-bar -o "$TMP/app.tgz" -w '%{http_code}' \
-      "https://github.com/$REPO/releases/download/$ref/$asset" || true)
+    code=000
+    case "$ref" in
+      v[0-9]*) code=$(curl -L --retry 3 --connect-timeout 20 --progress-bar -o "$TMP/app.tgz" -w '%{http_code}' \
+                 "https://github.com/$REPO/releases/download/$ref/$asset" || true) ;;
+    esac
     if [ "$code" != 200 ]; then
       # a branch, or a release without those files: the plain source archive instead
       curl -fL --retry 3 --connect-timeout 20 --progress-bar -o "$TMP/app.tgz" \
