@@ -1,6 +1,6 @@
 {
   "name": "segan-sessions",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "private": true,
   "description": "Free recording studio for vertical video on macOS — camera, screen with a face bubble, and your Android phone, saved as clean MP4s.",
   "license": "SEE LICENSE IN LICENSE",

@@ -71,8 +71,13 @@ env -i HOME="$SB" TMPDIR="$TMPDIR" PATH="$S/runtime/bin:$S/runtime/scrcpy:/usr/b
 env -i HOME="$SB" PATH=/usr/bin:/bin:/usr/sbin:/sbin SEGAN_APP_DIR="$SB/Applications" bash uninstall.sh
 ```
 
-Releases are git tags (`v1.2.0`) with a GitHub Release. The installer installs the latest release, or
-`main` when none exists. Bump `version` in `package.json` with the tag — the app shows it in the footer.
+Releases: bump `version` in `package.json` (the app shows it in the footer), commit, then
+`tools/release.sh 1.2.0`. It tags, pushes, and publishes the GitHub Release with the two files the
+installer downloads: `segan-sessions.tar.gz` (new installs) and `segan-sessions-update.tar.gz` (updates),
+the same archive under two names. **They are the install counter** — GitHub counts every download of a
+release file, `tools/installs.sh` prints the numbers, and nothing inside the app reports anything. Never
+re-upload them with `--clobber`: that resets the count. The installer takes the latest release's file
+and falls back to the source archive when a release has none (or to `main` when there is no release).
 
 ## Backgrounds and screenshots
 

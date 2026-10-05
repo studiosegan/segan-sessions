@@ -58,7 +58,7 @@ macOS asks for permissions on behalf of **Chrome**, not Segan Sessions:
 1. **Camera and microphone** — Chrome shows a prompt. Click **Allow**.
 2. **Screen recording** — the first time you choose a screen, macOS sends you to *System Settings → Privacy & Security → Screen & System Audio Recording*. Turn on **Google Chrome**, then quit and reopen Chrome.
 
-The studio runs only on your Mac, at `http://127.0.0.1:4321`. Nothing is uploaded anywhere.
+The studio runs only on your Mac, at `http://127.0.0.1:4321`. Nothing is uploaded anywhere. The only thing anyone can count is how many times the installer was downloaded from GitHub — a number, nothing about you.
 
 ## Where your files go
 

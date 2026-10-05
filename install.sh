@@ -117,7 +117,7 @@ stop_studio() {
 }
 
 install_app() {
-  local new="$BASE/app.new" ref
+  local new="$BASE/app.new" ref asset code
   rm -rf "$new"; mkdir -p "$new"
   if [ -n "${SEGAN_SOURCE:-}" ]; then
     step "Segan Sessions (from $SEGAN_SOURCE)"
@@ -129,9 +129,20 @@ install_app() {
         | sed -n 's/.*"tag_name": *"\([^"]*\)".*/\1/p' | head -1 || true)
     fi
     ref="${ref:-main}"
+    # The install counter: each release carries the app as two identical files, one fetched by new
+    # installs and one by updates, and GitHub counts every download of a release file. That number
+    # is all anyone learns — nothing inside the app reports anything.
+    asset="segan-sessions.tar.gz"
+    [ -f "$BASE/app/server.js" ] && asset="segan-sessions-update.tar.gz"
     step "Segan Sessions $ref"
-    curl -fL --retry 3 --connect-timeout 20 --progress-bar "https://codeload.github.com/$REPO/tar.gz/$ref" \
-      | tar -xzf - -C "$new" --strip-components 1 || die "couldn't download Segan Sessions ($ref)"
+    code=$(curl -L --retry 3 --connect-timeout 20 --progress-bar -o "$TMP/app.tgz" -w '%{http_code}' \
+      "https://github.com/$REPO/releases/download/$ref/$asset" || true)
+    if [ "$code" != 200 ]; then
+      # a branch, or a release without those files: the plain source archive instead
+      curl -fL --retry 3 --connect-timeout 20 --progress-bar -o "$TMP/app.tgz" \
+        "https://codeload.github.com/$REPO/tar.gz/$ref" || die "couldn't download Segan Sessions ($ref)"
+    fi
+    tar -xzf "$TMP/app.tgz" -C "$new" --strip-components 1 || die "couldn't unpack Segan Sessions ($ref)"
   fi
   [ -f "$new/server.js" ] || die "that download doesn't contain the studio (no server.js)"
   rm -rf "$new/test" "$new/tools" "$new/docs" "$new/.github"   # dev-only; the studio never reads them
